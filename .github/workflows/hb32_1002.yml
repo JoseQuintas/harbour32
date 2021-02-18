@@ -61,9 +61,6 @@ jobs:
 
     - name: Build 32 bits
       env:
-         HB_BUILD_CONTRIB: No
-         HB_BUILD_DYN: no
-         HB_BUILD_SHARED: no
          HB_BUILD_STRIP: all
          HB_COMPILER: mingw
          HB_INSTALL_PREFIX: c:\temp\harbour
@@ -75,10 +72,7 @@ jobs:
 
     - name: Build 64 bits
       env:
-         HB_BUILD_CONTRIB: No
-         HB_BUILD_DYN: no
-         HB_BUILD_SHARED: no
-         HB_BUILD_STRIP: no
+         HB_BUILD_STRIP: all
          HB_COMPILER: mingw64
          HB_INSTALL_PREFIX: c:\temp\harbour
          PATH: c:\temp\mingw64\bin
