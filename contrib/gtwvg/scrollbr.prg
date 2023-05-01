@@ -52,9 +52,7 @@
 #include "inkey.ch"
 #include "hbgtinfo.ch"
 
-#include "hbgtwvg.ch"
-#include "wvtwin.ch"
-#include "wvgparts.ch"
+#include "gtwvg.ch"
 
 CREATE CLASS WvgScrollBar INHERIT WvgWindow, WvgDataRef
 
@@ -78,6 +76,8 @@ CREATE CLASS WvgScrollBar INHERIT WvgWindow, WvgDataRef
 
    METHOD setRange( aRange )
    METHOD setScrollBoxSize( nUnits )
+   // https://learn.microsoft.com/en-us/windows/win32/controls/sbm-setpos
+   METHOD SetScrollPos( nPos )  INLINE wapi_SetScrollPos( ::pWnd, SB_CTL, nPos, .F. )
 
 ENDCLASS
 
