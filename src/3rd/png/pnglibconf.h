@@ -1,9 +1,10 @@
+/* libpng 1.6.34 STANDARD API DEFINITION */
+
 /* pnglibconf.h - library build configuration */
 
-/* libpng version 1.6.40 */
+/* Libpng version 1.6.34 - September 29, 2017 */
 
-/* Copyright (c) 2018-2023 Cosmin Truta */
-/* Copyright (c) 1998-2002,2004,2006-2018 Glenn Randers-Pehrson */
+/* Copyright (c) 1998-2017 Glenn Randers-Pehrson */
 
 /* This code is released under the libpng license. */
 /* For conditions of distribution and use, see the disclaimer */
@@ -19,14 +20,16 @@
 #define PNG_ALIGNED_MEMORY_SUPPORTED
 /*#undef PNG_ARM_NEON_API_SUPPORTED*/
 /*#undef PNG_ARM_NEON_CHECK_SUPPORTED*/
+/*#undef PNG_POWERPC_VSX_API_SUPPORTED*/
+/*#undef PNG_POWERPC_VSX_CHECK_SUPPORTED*/
 #define PNG_BENIGN_ERRORS_SUPPORTED
 #define PNG_BENIGN_READ_ERRORS_SUPPORTED
 /*#undef PNG_BENIGN_WRITE_ERRORS_SUPPORTED*/
 #define PNG_BUILD_GRAYSCALE_PALETTE_SUPPORTED
 #define PNG_CHECK_FOR_INVALID_INDEX_SUPPORTED
 #define PNG_COLORSPACE_SUPPORTED
-/*#define PNG_CONSOLE_IO_SUPPORTED*/
-/*#define PNG_CONVERT_tIME_SUPPORTED*/
+#define PNG_CONSOLE_IO_SUPPORTED
+#define PNG_CONVERT_tIME_SUPPORTED
 #define PNG_EASY_ACCESS_SUPPORTED
 /*#undef PNG_ERROR_NUMBERS_SUPPORTED*/
 #define PNG_ERROR_TEXT_SUPPORTED
@@ -43,8 +46,6 @@
 #define PNG_IO_STATE_SUPPORTED
 #define PNG_MNG_FEATURES_SUPPORTED
 #define PNG_POINTER_INDEXING_SUPPORTED
-/*#undef PNG_POWERPC_VSX_API_SUPPORTED*/
-/*#undef PNG_POWERPC_VSX_CHECK_SUPPORTED*/
 #define PNG_PROGRESSIVE_READ_SUPPORTED
 #define PNG_READ_16BIT_SUPPORTED
 #define PNG_READ_ALPHA_MODE_SUPPORTED
@@ -111,13 +112,9 @@
 #define PNG_SIMPLIFIED_READ_SUPPORTED
 #define PNG_SIMPLIFIED_WRITE_AFIRST_SUPPORTED
 #define PNG_SIMPLIFIED_WRITE_BGR_SUPPORTED
-#ifndef PNG_NO_STDIO
 #define PNG_SIMPLIFIED_WRITE_STDIO_SUPPORTED
-#endif
 #define PNG_SIMPLIFIED_WRITE_SUPPORTED
-#ifndef PNG_NO_STDIO
 #define PNG_STDIO_SUPPORTED
-#endif
 #define PNG_STORE_UNKNOWN_CHUNKS_SUPPORTED
 #define PNG_TEXT_SUPPORTED
 #define PNG_TIME_RFC1123_SUPPORTED
@@ -193,11 +190,7 @@
 #define PNG_zTXt_SUPPORTED
 /* end of options */
 /* settings */
-#if defined( __WATCOMC__ )
-#  define PNG_API_RULE 2
-#else
-#  define PNG_API_RULE 0
-#endif
+#define PNG_API_RULE 0
 #define PNG_DEFAULT_READ_MACROS 1
 #define PNG_GAMMA_THRESHOLD_FIXED 5000
 #define PNG_IDAT_READ_SIZE PNG_ZBUF_SIZE
@@ -224,4 +217,14 @@
 #define PNG_sCAL_PRECISION 5
 #define PNG_sRGB_PROFILE_CHECKS 2
 /* end of settings */
+#undef PNG_CONSOLE_IO_SUPPORTED
+#undef PNG_CONVERT_tIME_SUPPORTED
+#ifdef PNG_NO_STDIO
+#  undef PNG_SIMPLIFIED_WRITE_STDIO_SUPPORTED
+#  undef PNG_STDIO_SUPPORTED
+#endif
+#if defined( __WATCOMC__ )
+#  undef PNG_API_RULE
+#  define PNG_API_RULE 2
+#endif
 #endif /* PNGLCONF_H */
